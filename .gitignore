@@ -1,0 +1,6 @@
+# 运行脚本时生成的删除记录
+removed_*.log
+# 用户自己放进来的 adb 工具
+adb
+adb.exe
+*.dll

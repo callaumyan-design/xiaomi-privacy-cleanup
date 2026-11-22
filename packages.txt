@@ -1,0 +1,53 @@
+# 小米 / Redmi / POCO 隐私组件清单（2026-11 整理）
+# 格式：级别|包名|名称|说明
+# 不想删的行，在行首加 # 即可。
+# 国行和国际版的包都写在一起，手机上没有的会自动跳过。
+#
+# A = 隐私上报，建议删除
+A|com.mobiletools.systemhelper|联通终端管理 SystemHelper|据逆向报告，会定期上报 App 使用清单、使用时长和流量、IMEI/IMSI/ICCID、基站和位置，插任何运营商的卡都会触发。删后请确认两张卡都能正常打电话、上网
+A|com.miui.analytics|小米统计 Analytics|后台统计和数据上传
+A|com.miui.daemon|系统守护 MiuiDaemon|后台收集系统和性能数据
+A|com.miui.misightservice|系统质量监测 MiSight|向小米上报系统事件日志。注意：系统底层另有一个 root 权限的 misight 进程，删 App 不一定能关掉它
+A|com.xiaomi.security.onetrack|手机管家数据上报 OneTrack|手机管家的行为埋点上报模块
+A|com.miui.bugreport|错误报告 / 用户反馈|打包上传错误日志；删后不能用系统自带的反馈功能
+A|com.miui.uireporter|界面事件上报|上报界面崩溃和交互事件
+#
+# B = 广告和推荐，建议删除
+B|com.miui.systemAdSolution|系统广告 MSA（国行，名为"智能服务"）|系统级广告通道；删后应用商店首次打开可能稍慢
+B|com.miui.msa.global|系统广告 MSA（国际版）|系统级广告通道
+B|com.miui.hybrid|快应用服务框架|广告点击后跳转快应用的主要通道；删后网页无法唤起快应用
+B|com.miui.hybrid.accessory|快应用附加组件 / 智慧生活|随快应用一起删
+B|com.mfashiongallery.emag|锁屏画报（国行）|锁屏轮播壁纸和广告
+B|com.miui.android.fashiongallery|锁屏画报（国际版）|锁屏轮播壁纸和广告
+B|com.miui.newhome|内容中心|负一屏里的资讯和短视频信息流
+B|com.xiaomi.aireco|小爱建议|推荐引擎；删后"小爱建议"卡片不再出现
+#
+# C = 运营商注册组件，按需删除，删后测试通话、上网和支付
+C|com.miui.dmregservice|中国移动 RegService|插移动卡时每 7 天上报 App 清单、使用时长和流量。有精简清单称删后可能影响开机激活、移动网络或支付，出问题就恢复
+C|com.xiaomi.registration|中国电信自注册|电信卡终端注册；有开发者检查称它不上传 App 清单，删除后的影响未知
+#
+# D = 可选功能，不用就删（脚本会逐个询问）
+D|com.android.browser|小米浏览器（国行）|2020 年有研究人员称它在无痕模式下仍上传浏览数据（小米否认）。请先装好别的浏览器
+D|com.mi.globalbrowser|小米浏览器（国际版）|同上。请先装好别的浏览器
+D|com.sohu.inputmethod.sogou.xiaomi|搜狗输入法小米版|必须先装好并切换到别的输入法（脚本会检查当前输入法）
+D|com.baidu.input_mi|百度输入法小米版|必须先装好并切换到别的输入法
+D|com.iflytek.inputmethod.miui|讯飞输入法小米版|必须先装好并切换到别的输入法
+D|com.miui.contentextension|传送门|长按屏幕识别文字和内容；删后传送门不可用
+D|com.miui.voiceassist|小爱同学|不用语音助手可删
+D|com.miui.voicetrigger|语音唤醒|随小爱一起删
+D|com.xiaomi.aiasst.service|AI 通话 / 小爱通话|会接触通话音频的 AI 功能；删除不影响正常打电话
+D|com.xiaomi.aiasst.vision|小爱翻译|不用可删
+D|com.xiaomi.xaee|小爱离线引擎|随小爱一起删
+D|com.xiaomi.joyose|Joyose 云控 / 游戏调度|有说法是遥测，也有说法是温控和游戏调度。常玩游戏的建议保留
+D|com.miui.greenguard|家人守护|在用家长控制就别删
+D|com.miui.personalassistant|负一屏|删后桌面左滑没有负一屏
+D|com.android.quicksearchbox|桌面搜索|删后桌面搜索框不可用
+D|com.miui.yellowpage|生活黄页|可能影响陌生来电的号码标记
+D|com.miui.thirdappassistant|智能应用助手|第三方应用异常分析和弹窗
+D|com.miui.miservice|服务与反馈|官方客服入口
+D|com.xiaomi.ab|售后支持|官方售后入口
+D|com.xiaomi.mipicks|GetApps 应用商店（国际版）|删后小米自家应用不能再通过它更新
+#
+# E = 高风险，默认不执行（脚本会要求输入 YES 确认）
+E|com.miui.guardprovider|系统安全组件|就是这次被指录屏上传、上报第三方 App 清单、做 AI 通话检测的组件。删后可能无法安装或更新 App、手机管家反复报错，个别机型有卡开机的报告；HyperOS 3 上可能免 root 删不掉
+E|com.miui.contentcatcher|应用程序扩展服务（内容捕获）|有清单称它抓取屏幕内容，但能否安全删除说法冲突，有人称删后卡开机
